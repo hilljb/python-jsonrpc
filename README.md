@@ -17,7 +17,7 @@ json in Python and is considerably faster at the time this was written.
 Background and Design
 ---------------------
 
-I'm finding [http://en.wikipedia.org/wiki/JSON-RPC](JSON-RPC) implementations to be a bit
+I'm finding [JSON-RPC](http://en.wikipedia.org/wiki/JSON-RPC) implementations to be a bit
 frustrating in the following ways:
 
 1. They tend to assume that the person/coder implementing a server or client is also implementing
@@ -32,6 +32,6 @@ implementations are part of the communication network). The goal is to also prov
 event-driven and reactor-based framework (so that procedure calls requiring some time don't block
 calls that may be returned immediately).
 
-Finally, the module is being released under the [https://www.gnu.org/licenses/lgpl.html](LGPL). The
+Finally, the module is being released under the [LGPL](https://www.gnu.org/licenses/lgpl.html). The
 goal here is to allow the module to be used as a library in proprietary projects while maintaining
 the open-source property of the library itself.
