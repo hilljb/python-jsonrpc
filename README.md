@@ -31,3 +31,7 @@ servers and clients within a more complex environment (e.g., one where other JSO
 implementations are part of the communication network). The goal is to also provide an asynchronous
 event-driven and reactor-based framework (so that procedure calls requiring some time don't block
 calls that may be returned immediately).
+
+Finally, the module is being released under the [https://www.gnu.org/licenses/lgpl.html](LGPL). The
+goal here is to allow the module to be used as a library in proprietary projects while maintaining
+the open-source property of the library itself.
