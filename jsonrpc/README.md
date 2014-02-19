@@ -24,7 +24,10 @@ beginning with 'rpc' followed by a period (U+002E or ASCII 46) are reserved and 
 
 **params** A JSON structured value (object or array) holding the parameter values to be used during
 the invocation of the method. This key/value is not required and may be omitted from the request
-JSON string.
+JSON string. The parameter structure is specified as follows: When included as a JSON object, the
+keys and values must match the possible method option keys expected on the server, including case.
+When included as a JSON array, the parameters are a sequence of values expected by the server in
+order.
 
 **id** A string or number. (Technically, the spec states that an id can also be a Null value, but
 warns against this usage. In addition, an id set to a number can contain fraction parts, but this is
@@ -33,3 +36,10 @@ requests with responses in environments where simultaneous or asynchronous reque
 In this module's implementation, the request JSON-RPC formed by the client cannot use Null id
 values. (However, the response JSON-RPC formed by the client can use Null id values and the server
 will understand Null if it is received as an id value.)
+
+#### Notifications
+
+When the client wishes to send a notification to the server, a JSON-RPC request may be sent with no
+'id' key/value set. The server will not reply to such requests.
+
+
