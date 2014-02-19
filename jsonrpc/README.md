@@ -16,8 +16,8 @@ JSON-RPC spec.
 
 An rpc request (client to server) object has the following members.
 
-**jsonrpc** (required) A string representing version of the JSON-RPC protocol being used. This module will use
-"2.0" for this value.
+**jsonrpc** (required) A string representing version of the JSON-RPC protocol being used. This
+module will use "2.0" for this value.
 
 **method** (required) A string containing te name of the method to be called. Note that method names
 beginning with 'rpc' followed by a period (U+002E or ASCII 46) are reserved and must not be used.
@@ -41,5 +41,38 @@ will understand Null if it is received as an id value.)
 
 When the client wishes to send a notification to the server, a JSON-RPC request may be sent with no
 'id' key/value set. The server will not reply to such requests.
+
+### Response Object
+
+Except in the case of notifications (JSON-RPC requests without an id key/value), the server must
+send a response. The response is expressed as a single JSON object with the following members.
+
+**jsonrpc** (required) A string representing version of the JSON-RPC protocol being used. This
+module will use "2.0" for this value.
+
+**result** (required on success, not used on error) When returned, the value is determined by the
+method invoked on the server.
+
+**error** (required on error, not used on success) When returned, the value must be a JSON object
+with keys/values as follows..
+
+| **code**         | **message**      | **meaning**                                       |
+| ---------------- | ---------------- | ------------------------------------------------- |
+| -32700           | parse error      | invalid JSON received by server                   |
+| -32600           | invalid request  | JSON request was invalid                          |
+| -32601           | method not found | method not found / unavailable                    |
+| -32602           | invalid params   | invalid method parameters                         |
+| -32603           | internal error   | internal JSON-RPC error                           |
+| -32000 to -32099 | server error     | reserved for implementation defined server errors |
+
+For implementation specific errors, the meaning component of the JSON object will return information
+about the error.
+
+**id** (required) The value of this is identical to that of the corresponding request call. (See
+documentation above.) If there is an error in detecting the id in the request call, the id value in
+the response will be set to Null.
+
+
+
 
 
