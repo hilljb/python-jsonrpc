@@ -72,7 +72,19 @@ about the error.
 documentation above.) If there is an error in detecting the id in the request call, the id value in
 the response will be set to Null.
 
+### Batch
 
+To send several request calls at the same time, the client may send a JSON array of request objects.
+
+After all requests in the batch call are processed, the server will send a response in the form of a
+JSON array of RPC response objects. The sizes of the request and response arrays may be different,
+as response objects aren't provided in the case of notification requests. The order of elements in
+the arrays may be different and distinct response objects are found via their id key values.
+
+The response object may be a single (non-array) object in the case when the batch request is not
+understood. In the case when any request in the batch is itself not understood, the corresponding
+error response will be sent for that RPC while result responses may be sent for other RPCs in the
+batch.
 
 
 
